@@ -40,18 +40,17 @@ void	file_extension_check(char **av, t_game *g)
 		exit_game(1, g);
 }
 
-void read_file(t_game *g, char **av)
+void read_file(t_main *main, char **av)
 {
-
-	file_extension_check(av, g);
-	g->image = malloc(sizeof(t_image));
-	init_t_image(g->image);
-	open_map(g, av);
-	printf("NO - %s\n", g->image->no);
-	printf("SO - %s\n", g->image->so);
-	printf("WE - %s\n", g->image->we);
-	printf("AE - %s\n", g->image->ea);
-	printf("F - %lu\n", g->image->floor);
-	printf("C - %lu\n", g->image->sky);
-
+	main->game = malloc(sizeof(t_game));
+	file_extension_check(av, main->game);
+	main->game->image = malloc(sizeof(t_image));
+	init_t_image(main->game->image);
+	open_map(main->game, av);
+	printf("NO - %s\n", main->game->image->no);
+	printf("SO - %s\n", main->game->image->so);
+	printf("WE - %s\n", main->game->image->we);
+	printf("AE - %s\n", main->game->image->ea);
+	printf("F - %lu\n", main->game->image->floor);
+	printf("C - %lu\n", main->game->image->sky);
 }

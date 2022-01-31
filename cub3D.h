@@ -1,10 +1,35 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 
+#include "./minilibx_opengl/mlx.h"
 #include "GNL/get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+
+///minimap
+#define	WIN_X			1380
+#define	WIN_Y			1024
+#define REYS			10
+#define ROOT_SPEED		0.1
+#define MOVE_SPEED		0.1
+#define	FOV				66.0
+#define SIZE_DIF_PIX	7
+#define COLOR_WALL		0x00FFFFFF
+#define COLOR_FOV		0x00751157
+#define COLOR_PLYR		0x00751157
+#define COLOR_EMPTY		0x00000000
+
+///keys
+#define	KEY_W			13
+#define	KEY_A			0
+#define	KEY_S			1
+#define	KEY_D			2
+#define	KEY_Q			12
+#define	KEY_E			14
+#define	KEY_RR			124
+#define	KEY_RL			123
+#define	KEY_ESC			53
 
 typedef struct s_image
 {
@@ -29,8 +54,38 @@ typedef struct s_game
 	t_image	*image;
 }			t_game;
 
+///структура для окана библиотеки mlx
+typedef struct	s_win
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int 	b_p_p;
+	int 	line_l;
+	int 	endian;
+}				t_win;
+
+///структура игрока и луча
+typedef struct	s_player
+{
+	float	x;
+	float	y;
+	float	way;
+	float	start;
+	float	end;
+}				t_player;
+
+///структура общая
+typedef struct	s_main
+{
+	t_player	*pers;
+	t_win		*win;
+	t_game		*game;
+}				t_main;
+
 //read_file
-void read_file(t_game *g, char **av);
+void read_file(t_main *main, char **av);
 void	file_extension_check(char **av, t_game *g);
 void	init_t_image(t_image *image);
 

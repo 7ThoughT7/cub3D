@@ -11,11 +11,13 @@ OBJ			= $(LIST:.c=.o)
 
 FLAGS       = -Wall -Wextra -Werror
 
+MLX_LIBS	= -lmlx -lm -L ./minilibx_opengl -framework OpenGL -framework AppKit
+
 %.o:%.c		$(HEADER)
 		    gcc $(FLAGS) -Imlx -c $< -o $@
 
 $(NAME) :	$(OBJ) $(HEADER)
-			gcc $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+			gcc $(FLAGS) $(OBJ) ${MLX_LIBS} -o $(NAME)
 
 all :		$(NAME)
 
