@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grap_minimap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:44:15 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 16:44:15 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 static void	ft_mini_map_block(t_map *map, t_coord coord_player, \
@@ -61,8 +73,8 @@ static void	ft_mini_map_player(t_map *map, int cell)
 	t_coord	start;
 	t_coord	size;
 
-	start.x = (map->lodev.posY - 0.5) * cell + cell / 4;
-	start.y = (map->lodev.posX - 0.5) * cell + cell / 4;
+	start.x = (map->lodev.pos_y - 0.5) * cell + cell / 4;
+	start.y = (map->lodev.pos_x - 0.5) * cell + cell / 4;
 	size.x = cell / 2;
 	size.y = cell / 2;
 	square_print(map, start, size, map->mini_map.color_player);

@@ -57,7 +57,7 @@ void	init_mini_map(t_map *map)
 
 void	init_text(t_map *map)
 {
-	map->field[(int)map->lodev.posX][(int)map->lodev.posY] = '0';
+	map->field[(int)map->lodev.pos_x][(int)map->lodev.pos_y] = '0';
 	map->text = malloc(sizeof(t_text) * 4);
 	if (map->text == NULL)
 		error(36);

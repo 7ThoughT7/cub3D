@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grap_main_loop_utils.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:42:01 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 16:42:04 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	char_in_str(char cr, char *str)
@@ -13,18 +25,18 @@ int	char_in_str(char cr, char *str)
 	return (0);
 }
 
-int	numOfText(int side, int stepY, int stepX)
+int	num_of_text(int side, int step_y, int step_x)
 {
 	if (side == 1)
 	{
-		if (stepY == -1)
+		if (step_y == -1)
 			return (WE);
 		else
 			return (EA);
 	}
 	else
 	{
-		if (stepX == -1)
+		if (step_x == -1)
 			return (NO);
 		else
 			return (SO);

@@ -6,7 +6,7 @@
 /*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:02:07 by bmohamme          #+#    #+#             */
-/*   Updated: 2022/02/03 15:23:53 by bmohamme         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:02:54 by bmohamme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	init_player(t_map *map)
 			if (map->field[i][j] == 'E' || map->field[i][j] == 'N' || \
 				map->field[i][j] == 'W' || map->field[i][j] == 'S')
 			{
-				map->lodev.posX = i + 0.5;
-				map->lodev.posY = j + 0.5;
+				map->lodev.pos_x = i + 0.5;
+				map->lodev.pos_y = j + 0.5;
 				init_player_n_s(map, i, j);
 			}
 			j++;
@@ -40,25 +40,25 @@ void	init_player(t_map *map)
 	}
 	map->lodev.w = map->spec.r.x;
 	map->lodev.h = map->spec.r.y;
-	map->lodev.moveSpeed = 0.2;
-	map->lodev.rotSpeed = 0.085;
+	map->lodev.move_speed = 0.2;
+	map->lodev.rot_speed = 0.085;
 }
 
 static void	init_player_n_s(t_map *map, int i, int j)
 {
 	if (map->field[i][j] == 'N')
 	{
-		map->lodev.dirX = -1.0;
-		map->lodev.dirY = 0;
-		map->lodev.planeX = 0;
-		map->lodev.planeY = 0.66;
+		map->lodev.dir_x = -1.0;
+		map->lodev.dir_y = 0;
+		map->lodev.plane_x = 0;
+		map->lodev.plane_y = 0.66;
 	}
 	else if (map->field[i][j] == 'S')
 	{
-		map->lodev.dirX = 1.0;
-		map->lodev.dirY = 0;
-		map->lodev.planeX = 0;
-		map->lodev.planeY = -0.66;
+		map->lodev.dir_x = 1.0;
+		map->lodev.dir_y = 0;
+		map->lodev.plane_x = 0;
+		map->lodev.plane_y = -0.66;
 	}
 	else
 		init_player_e_w(map, i, j);
@@ -68,17 +68,17 @@ static void	init_player_e_w(t_map *map, int i, int j)
 {
 	if (map->field[i][j] == 'E')
 	{
-		map->lodev.dirX = 0;
-		map->lodev.dirY = 1;
-		map->lodev.planeX = 0.66;
-		map->lodev.planeY = 0;
+		map->lodev.dir_x = 0;
+		map->lodev.dir_y = 1;
+		map->lodev.plane_x = 0.66;
+		map->lodev.plane_y = 0;
 	}
 	else if (map->field[i][j] == 'W')
 	{
-		map->lodev.dirX = 0;
-		map->lodev.dirY = -1.0;
-		map->lodev.planeX = -0.66;
-		map->lodev.planeY = 0;
+		map->lodev.dir_x = 0;
+		map->lodev.dir_y = -1.0;
+		map->lodev.plane_x = -0.66;
+		map->lodev.plane_y = 0;
 	}
 }
 

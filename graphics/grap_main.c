@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grap_main.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:39:11 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 17:11:55 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	display_game(t_print_data *vel, t_map *map, int x)
 {
 	int	w;
-	int	texY;
+	int	tex_y;
 
 	w = 0;
 	while (w < map->spec.r.y)
 	{
-		if (w >= vel->drawStart && w <= vel->drawEnd)
+		if (w >= vel->draw_start && w <= vel->draw_end)
 		{
-			texY = (int)vel->texPos & (map->text[vel->numText].sprites_height
+			tex_y = (int)vel->tex_pos & (map->text[vel->num_text].sprites_height
 					- 1);
-			vel->texPos += vel->step;
-			my_mlx_pixel_put(&map->grap, x, w, map->text[vel->numText].data[texY
-				* map->text[vel->numText].sprites_height + vel->texX]);
+			vel->tex_pos += vel->step;
+			my_mlx_pixel_put(&map->grap, x, w, map->text[vel->num_text]. \
+			data[tex_y * map->text[vel->num_text].sprites_height + vel->tex_x]);
 		}
-		else if (w < vel->drawStart)
+		else if (w < vel->draw_start)
 			my_mlx_pixel_put(&map->grap, x, w, map->c);
-		else if (w > vel->drawEnd)
+		else if (w > vel->draw_end)
 			my_mlx_pixel_put(&map->grap, x, w, map->f);
 		w++;
 	}

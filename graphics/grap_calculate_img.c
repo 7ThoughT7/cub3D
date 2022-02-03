@@ -6,7 +6,7 @@
 /*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:27:22 by bmohamme          #+#    #+#             */
-/*   Updated: 2022/02/03 14:27:22 by bmohamme         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:13:34 by bmohamme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,39 @@
 
 void	calculate_img1(t_print_data *vel, t_map *map, int x)
 {
-	vel->cameraX = 2 * x / (double)map->lodev.w - 1;
-	vel->rayDirX = map->lodev.dirX + map->lodev.planeX * vel->cameraX;
-	vel->rayDirY = map->lodev.dirY + map->lodev.planeY * vel->cameraX;
-	vel->mapX = (int)(map->lodev.posX);
-	vel->mapY = (int)(map->lodev.posY);
-	vel->deltaDistX = fabs(1 / vel->rayDirX);
-	vel->deltaDistY = fabs(1 / vel->rayDirY);
+	vel->camera_x = 2 * x / (double)map->lodev.w - 1;
+	vel->ray_dir_x = map->lodev.dir_x + map->lodev.plane_x * vel->camera_x;
+	vel->ray_dir_y = map->lodev.dir_y + map->lodev.plane_y * vel->camera_x;
+	vel->map_x = (int)(map->lodev.pos_x);
+	vel->map_y = (int)(map->lodev.pos_y);
+	vel->delta_dist_x = fabs(1 / vel->ray_dir_x);
+	vel->delta_dist_y = fabs(1 / vel->ray_dir_y);
 	vel->hit = 0;
 }
 
 void	calculate_img2(t_print_data *vel, t_map *map)
 {
-	if (vel->rayDirX < 0)
+	if (vel->ray_dir_x < 0)
 	{
-		vel->stepX = -1;
-		vel->sideDistX = (map->lodev.posX - vel->mapX) * vel->deltaDistX;
+		vel->step_x = -1;
+		vel->side_dist_x = (map->lodev.pos_x - vel->map_x) * vel->delta_dist_x;
 	}
 	else
 	{
-		vel->stepX = 1;
-		vel->sideDistX = (vel->mapX + 1.0 - map->lodev.posX) * vel->deltaDistX;
+		vel->step_x = 1;
+		vel->side_dist_x = (vel->map_x + 1.0 - map->lodev.pos_x) \
+			* vel->delta_dist_x;
 	}
-	if (vel->rayDirY < 0)
+	if (vel->ray_dir_y < 0)
 	{
-		vel->stepY = -1;
-		vel->sideDistY = (map->lodev.posY - vel->mapY) * vel->deltaDistY;
+		vel->step_y = -1;
+		vel->side_dist_y = (map->lodev.pos_y - vel->map_y) * vel->delta_dist_y;
 	}
 	else
 	{
-		vel->stepY = 1;
-		vel->sideDistY = (vel->mapY + 1.0 - map->lodev.posY) * vel->deltaDistY;
+		vel->step_y = 1;
+		vel->side_dist_y = (vel->map_y + 1.0 - map->lodev.pos_y) \
+			* vel->delta_dist_y;
 	}
 }
 
@@ -52,19 +54,19 @@ void	calculate_img3(t_print_data *vel, t_map *map)
 {
 	while (vel->hit == 0)
 	{
-		if (vel->sideDistX < vel->sideDistY)
+		if (vel->side_dist_x < vel->side_dist_y)
 		{
-			vel->sideDistX += vel->deltaDistX;
-			vel->mapX += vel->stepX;
+			vel->side_dist_x += vel->delta_dist_x;
+			vel->map_x += vel->step_x;
 			vel->side = 0;
 		}
 		else
 		{
-			vel->sideDistY += vel->deltaDistY;
-			vel->mapY += vel->stepY;
+			vel->side_dist_y += vel->delta_dist_y;
+			vel->map_y += vel->step_y;
 			vel->side = 1;
 		}
-		if (map->field[vel->mapX][vel->mapY] == '1')
+		if (map->field[vel->map_x][vel->map_y] == '1')
 			vel->hit = 1;
 	}
 }
@@ -72,35 +74,35 @@ void	calculate_img3(t_print_data *vel, t_map *map)
 void	calculate_img4(t_print_data *vel, t_map *map)
 {
 	if (vel->side == 0)
-		vel->perpWallDist = (vel->mapX - map->lodev.posX
-				+ (1 - vel->stepX) / 2) / vel->rayDirX;
+		vel->perp_wall_dist = (vel->map_x - map->lodev.pos_x
+				+ (1 - vel->step_x) / 2) / vel->ray_dir_x;
 	else
-		vel->perpWallDist = (vel->mapY - map->lodev.posY
-				+ (1 - vel->stepY) / 2) / vel->rayDirY;
-	vel->lineHeight = (int)(map->lodev.h / vel->perpWallDist);
-	vel->drawStart = -vel->lineHeight / 2 + map->lodev.h / 2;
-	if (vel->drawStart < 0)
-		vel->drawStart = 0;
-	vel->drawEnd = vel->lineHeight / 2 + map->lodev.h / 2;
-	if (vel->drawEnd >= map->lodev.h)
-		vel->drawEnd = map->lodev.h - 1;
+		vel->perp_wall_dist = (vel->map_y - map->lodev.pos_y
+				+ (1 - vel->step_y) / 2) / vel->ray_dir_y;
+	vel->line_height = (int)(map->lodev.h / vel->perp_wall_dist);
+	vel->draw_start = -vel->line_height / 2 + map->lodev.h / 2;
+	if (vel->draw_start < 0)
+		vel->draw_start = 0;
+	vel->draw_end = vel->line_height / 2 + map->lodev.h / 2;
+	if (vel->draw_end >= map->lodev.h)
+		vel->draw_end = map->lodev.h - 1;
 	if (vel->side == 0)
-		vel->wallX = map->lodev.posY + vel->perpWallDist * vel->rayDirY;
+		vel->wall_x = map->lodev.pos_y + vel->perp_wall_dist * vel->ray_dir_y;
 	else
-		vel->wallX = map->lodev.posX + vel->perpWallDist * vel->rayDirX;
+		vel->wall_x = map->lodev.pos_x + vel->perp_wall_dist * vel->ray_dir_x;
 }
 
 void	calculate_img5(t_print_data *vel, t_map *map)
 {
-	vel->wallX = vel->wallX - (int)(vel->wallX);
-	vel->numText = numOfText(vel->side, vel->stepY, vel->stepX);
-	vel->texX = (int)(vel->wallX * (double)
-			(map->text[vel->numText].sprites_width));
-	if (vel->side == 0 && vel->rayDirX > 0)
-		vel->texX = map->text[vel->numText].sprites_width - vel->texX - 1;
-	if (vel->side == 1 && vel->rayDirY < 0)
-		vel->texX = map->text[vel->numText].sprites_width - vel->texX - 1;
-	vel->step = 1.0 * map->text[0].sprites_height / vel->lineHeight;
-	vel->texPos = (vel->drawStart - map->lodev.h / 2 + \
-	vel->lineHeight / 2) * vel->step;
+	vel->wall_x = vel->wall_x - (int)(vel->wall_x);
+	vel->num_text = num_of_text(vel->side, vel->step_y, vel->step_x);
+	vel->tex_x = (int)(vel->wall_x * (double)
+			(map->text[vel->num_text].sprites_width));
+	if (vel->side == 0 && vel->ray_dir_x > 0)
+		vel->tex_x = map->text[vel->num_text].sprites_width - vel->tex_x - 1;
+	if (vel->side == 1 && vel->ray_dir_y < 0)
+		vel->tex_x = map->text[vel->num_text].sprites_width - vel->tex_x - 1;
+	vel->step = 1.0 * map->text[0].sprites_height / vel->line_height;
+	vel->tex_pos = (vel->draw_start - map->lodev.h / 2 + \
+	vel->line_height / 2) * vel->step;
 }
