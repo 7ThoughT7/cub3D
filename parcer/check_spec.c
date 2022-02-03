@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_spec.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:56:59 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 16:58:00 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 static int	check_ident_line(t_spec *spec, char *line);
@@ -39,7 +51,7 @@ static int	check_ident_line(t_spec *spec, char *line)
 	else if (ft_strlen(line) == 0)
 		return (1);
 	else if (ft_strncmp(line, "R ", 2) == 0)
-		return (check_ident_line_R(spec, line));
+		return (check_ident_line_r(spec, line));
 	else if (ft_strncmp(line, "NO ", 3) == 0)
 		return (check_id_line(&spec->flag_no, &spec->no, line, &spec->no_way));
 	else if (ft_strncmp(line, "SO ", 3) == 0)

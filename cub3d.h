@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 17:00:28 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 17:11:55 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -94,14 +106,14 @@ typedef struct s_spec
 // структура для основного алгоритма
 typedef struct s_lodev
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	double	moveSpeed;
-	double	rotSpeed;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 	int		w;
 	int		h;
 
@@ -159,28 +171,28 @@ typedef struct s_mini_map
 // структура для обработки данных
 typedef struct s_print_data
 {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
 	int		hit;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	double	wallX;
-	int		numText;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		num_text;
 	double	step;
-	double	texPos;
-	int		texX;
+	double	tex_pos;
+	int		tex_x;
 }t_print_data;
 
 // основная структура
@@ -221,7 +233,7 @@ int		check_map_symbol(char c);
 int		check_ident_line_color(int *flag, t_color *color, char *line);
 
 // функции из файла check_spec_line.c (5)
-int		check_ident_line_R(t_spec *spec, char *line);
+int		check_ident_line_r(t_spec *spec, char *line);
 int		check_id_line(int *flag, int *texture, char *line, char **way);
 
 // функции из файла check_spec.c (5)
@@ -279,7 +291,7 @@ int		key_hook_press(int keycode, t_map *map);
 
 // функции из файла grap_main_loop_utils.c (3)
 int		char_in_str(char cr, char *str);
-int		numOfText(int side, int stepY, int stepX);
+int		num_of_text(int side, int step_y, int step_x);
 int		it_is_not_wall(t_map *map, double row, double col);
 
 //  функции из файла grap_main.c (3)

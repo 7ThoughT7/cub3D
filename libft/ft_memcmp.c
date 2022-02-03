@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:47:33 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 16:47:33 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
@@ -16,14 +28,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		return (0);
 	return ((unsigned char)*sor1 - (unsigned char)*sor2);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	printf("%d\n", ft_memcmp("asdf", "asdf", 4));
-// 	printf("%d\n", ft_memcmp("asdf", "asdf", 1));
-// 	printf("%d\n", ft_memcmp("asdfas", "asdf12", 6));
-// 	printf("%d\n", ft_memcmp("asdfas", "", 6));
-// 	printf("%d\n", ft_memcmp("", "1234", 6));
-// 	return 0;
-// }

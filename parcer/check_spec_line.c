@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_spec_line.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:57:23 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 16:58:00 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-static int	check_ident_line_R_x(t_spec *spec, char *line, int *i);
-static int	check_ident_line_R_y(t_spec *spec, char *line, int *i);
+static int	check_ident_line_r_x(t_spec *spec, char *line, int *i);
+static int	check_ident_line_r_y(t_spec *spec, char *line, int *i);
 static int	check_ident_line_text_str(int *start, int *end, char *line);
 
 // Проверка корректности разрешения
-int	check_ident_line_R(t_spec *spec, char *line)
+int	check_ident_line_r(t_spec *spec, char *line)
 {
 	int	i;
 
@@ -13,13 +25,13 @@ int	check_ident_line_R(t_spec *spec, char *line)
 	spec->flag_r++;
 	while (line[i] == ' ')
 		i++;
-	if (check_ident_line_R_x(spec, line, &i) == 0)
+	if (check_ident_line_r_x(spec, line, &i) == 0)
 		return (0);
 	if (line[i] != ' ')
 		return (error(8));
 	i++;
 	skip_symbols(line, &i, ' ');
-	if (check_ident_line_R_y(spec, line, &i) == 0)
+	if (check_ident_line_r_y(spec, line, &i) == 0)
 		return (0);
 	if (spec->r.x < spec->r_min.x)
 		return (error(13));
@@ -36,7 +48,7 @@ int	check_ident_line_R(t_spec *spec, char *line)
 
 // Проверка корректности разрешения: ширина
 // printf("Hello %d\n", spec->r.x);
-static int	check_ident_line_R_x(t_spec *spec, char *line, int *i)
+static int	check_ident_line_r_x(t_spec *spec, char *line, int *i)
 {
 	while (line[*i])
 	{
@@ -56,7 +68,7 @@ static int	check_ident_line_R_x(t_spec *spec, char *line, int *i)
 }
 
 // Проверка корректности разрешения: высота
-static int	check_ident_line_R_y(t_spec *spec, char *line, int *i)
+static int	check_ident_line_r_y(t_spec *spec, char *line, int *i)
 {
 	while (line[*i])
 	{

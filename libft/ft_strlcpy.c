@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmohamme <bmohamme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 16:49:56 by bmohamme          #+#    #+#             */
+/*   Updated: 2022/02/03 16:49:56 by bmohamme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 #include "libft.h"
 
@@ -27,23 +39,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	d[i] = 0;
 	return (ft_strlen(src));
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	// char dst[] = "";
-// 	// char srs[] = "12";
-
-// 	// strlcpy(dst, (const char *)srs, 3);
-// 	// printf("%s\n", dst);
-
-// 	// char dst1[] = "qwersd";
-// 	// char srs1[] = "12";
-
-// 	// ft_strlcpy(dst1, (const char *)srs1, 1);
-// 	// printf("%s\n", dst1);
-
-// 	char s6[15] = "123456789";
-// 	ft_strlcpy(&s6[2], s6, 5);
-// 	printf("%s my ft\n", s6);
-
-// }
