@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "mlx.h"
+# include "minilibx_macos/mlx.h"
 # include "get_next_line/get_next_line.h"
 
 # include <unistd.h>

@@ -90,13 +90,11 @@ static int	check_ident_line_r_y(t_spec *spec, char *line, int *i)
 // Определяет является ли спецификатор-текстура верным
 int	check_id_line(int *flag, int *texture, char *line, char **way)
 {
-	int	l;
 	int	start;
 	int	end;
 	int	len;
 
 	*flag = *flag + 1;
-	l = ft_strlen(line);
 	start = 3;
 	end = -1;
 	if (check_ident_line_text_str(&start, &end, line) == 0)

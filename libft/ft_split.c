@@ -88,13 +88,11 @@ static char	**ft_record_and_allocate(char **arr, char *s, char c, int j)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
 	int		j;
 	char	**arr;
 
 	if (s == NULL)
 		return (NULL);
-	i = 0;
 	j = ft_how_meny_words(s, c);
 	arr = malloc(sizeof(char *) * (j + 1));
 	if (arr == NULL)
@@ -108,17 +106,3 @@ char	**ft_split(char const *s, char c)
 	arr[j] = NULL;
 	return (arr);
 }
-
-// int main()
-// {
-// 	int i = 0;
-// 	char *str = "             ";
-// 	char **s = ft_split(str, ' ');
-// 	// while(s[i] && s)
-// 	// {
-// 		printf("%s\n", s[i]);
-// 	// 	i++;
-// 	// }
-// 	// printf("\n%s len of word\n", s[0]);
-// 	return (0);
-// }

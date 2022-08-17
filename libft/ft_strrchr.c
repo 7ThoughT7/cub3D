@@ -13,9 +13,7 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*src;
-	int		i;
 
-	i = 0;
 	src = 0;
 	if ((char)c == '\0')
 	{
